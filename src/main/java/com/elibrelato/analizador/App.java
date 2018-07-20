@@ -4,6 +4,7 @@ import com.elibrelato.analizador.dados.Dados;
 import com.elibrelato.analizador.parser.Parser;
 import com.elibrelato.analizador.relatorio.Relatorio;
 import com.elibrelato.analizador.config.Config;
+import com.elibrelato.analizador.relatorio.RelatorioGeral;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -62,8 +63,8 @@ public class App {
                 FileUtils.forceMkdir(outputFolder);
             }           
             
-            // Posso implemetar isso de 2 maneiras pois não ficou bem claro o modelo do relatório
-            // se o relatorio é por arquivo processado ou apenas 1 relatorio geral.
+            // Estou implementado um modelo do relatório individual (por arquivo processado) e
+            // um modelo de relatorio relatorio geral para exemplo de como gerar outros relatorios.
             // - Para um modelo relatório individual, devo comparar constantemente
             // o conteúdo da pasta In com o conteudo da pasta Out.
             //
@@ -137,8 +138,8 @@ public class App {
                 
                 if (gerarRelatorio == true) {
                     arquivosProcessados = parser.parse(arquivos);
-                    relatorio = new Relatorio(arquivosProcessados);
-                    relatorio.gerarRelatorioGeral(outputFolder, charset);
+                    relatorio = new RelatorioGeral(arquivosProcessados);
+                    relatorio.gerarRelatorio(outputFolder, charset);
                     Dados.clear();
                 }
             }
@@ -170,9 +171,5 @@ public class App {
         modeloDoRelatorio = (config.getModeloDoRelatorio() == null
                 ? "individual"
                 : config.getModeloDoRelatorio());
-    }
-    
-    public static String getExtension() {
-        return ext[0];
     }
 }
