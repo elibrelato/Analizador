@@ -73,3 +73,4 @@ Critérios de Avaliação
 - Acessar a pasta do Analizador pelo prompt de comandos
 - Digitar java -jar analizador-1.0-shaded.jar
 Enjoy!
+
