@@ -32,7 +32,6 @@ public class VendaFactory {
                 }
             }
         }              
-//        System.out.println("Criado Venda: " + venda.getId() + ", Vendedor: " + venda.getVendedor() + ", Items: " + venda.getItems().size());
         return venda;
     }
 }

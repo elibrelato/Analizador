@@ -286,10 +286,9 @@ public class Relatorio {
         try {
             File file = new File(fileName);
             FileUtils.writeLines(file, charset, dados, null);
-        } catch (UnsupportedEncodingException e) {
-            System.out.println(e.getMessage());
-        }
-        catch (IOException ex) {
+        } catch (UnsupportedEncodingException ex) {
+            System.out.println(ex.getMessage());
+        } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
     }

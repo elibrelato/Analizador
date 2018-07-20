@@ -31,7 +31,6 @@ public class ClienteFactory {
                 }
             }
         }
-//        System.out.println("Criado cliente: " + cliente.getName() + ", CNPJ: " + cliente.getCnpj() + ", Business Area: " + cliente.getBusinessArea());
         return cliente;
     }
 }

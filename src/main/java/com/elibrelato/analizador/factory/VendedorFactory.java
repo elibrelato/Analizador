@@ -35,7 +35,6 @@ public class VendedorFactory {
                 }
             }
         }              
-//        System.out.println("Deserializado vendedor: " + vendedor.getName() + ", CPF: " + vendedor.getCpf() + ", Salary: " + vendedor.getSalary());
         return vendedor;
     }
 }

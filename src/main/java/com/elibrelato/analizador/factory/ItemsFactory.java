@@ -46,7 +46,6 @@ public class ItemsFactory {
                 }
             }
             itemsList.add(item);
-//            System.out.println("Criado Item: " + item.getId() + ", Quantidade: " + item.getQuantity() + ", Valor: " + item.getPrice());
         }
         return itemsList; 
     }
