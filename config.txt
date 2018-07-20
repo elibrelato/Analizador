@@ -1,0 +1,39 @@
+﻿/////////////////////////////
+// Arquivo de configuração //
+/////////////////////////////
+
+// configuracoes gerais -> nao sao case-sensitive
+
+PastaDeEntrada = %HOMEPATH%\data\in
+PastaDeSaida = %HOMEPATH%\data\out
+ExtensaoDosArquivos = .dat
+Charset = default; // Default, UTF-8, UTF-16, ISO-8859-1, US-ASCII. (no Windos Default = ANSI)
+
+// ModeloDoRelatorio:
+// GERAL: gera 1 unico arquivo na pasta de saida contendo os dados analisador
+// INDIVIDUAL: para cada arquivo processado, gera um arquivo na pasta de saida contendo os dados analisados.
+ModeloDoRelatorio = individual;
+
+// configuracoes dos campos -> Essas configuracoes sao case-sensitive.
+
+vendedor.id=001
+vendedor.separador=ç
+vendedor.formato = idçCPFçNameçSalary
+
+cliente.id = 002
+cliente.separador = ç
+cliente.formato = idçCNPJçNameçBusiness Area
+
+//
+// Os campos item devem ser configurados antes de configurar a venda
+//
+
+item.inicio = [
+item.fim = ]
+item.separador = -
+item.separadordeitems = ,
+item.formato = [Item ID-Item Quantity-Item Price]
+
+vendas.id = 003
+vendas.separador = ç
+vendas.formato=idçSale IDç[Item ID-Item Quantity-Item Price]çSalesman Name
