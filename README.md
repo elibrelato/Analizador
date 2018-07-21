@@ -71,6 +71,7 @@ Critérios de Avaliação
 # Executar
 - Copiar o arquivo config.txt para a mesma pasta do Analizador
 - Acessar a pasta do Analizador pelo prompt de comandos
-- Digitar java -jar analizador-1.0-shaded.jar
+- Digitar: java -jar analizador-1.0-shaded.jar
+
 Enjoy!
 
