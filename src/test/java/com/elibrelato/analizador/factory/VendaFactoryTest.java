@@ -42,10 +42,9 @@ public class VendaFactoryTest {
     @Test
     public void testGetVenda() {
         String dados = "003ç08ç[1-34-10,2-33-1.50,3-40-0.10]çPaulo";
-        VendaFactory instance = new VendaFactory();
-        Venda result = instance.getVenda(dados);
-        assertEquals("08", result.getId());
-        assertEquals("Paulo", result.getVendedor());
-        assertEquals(3, result.getItems().size());
+        Venda venda = new VendaFactory().getVenda(dados);
+        assertEquals("08", venda.getId());
+        assertEquals("Paulo", venda.getVendedor());
+        assertEquals(3, venda.getItems().size());
     }   
 }

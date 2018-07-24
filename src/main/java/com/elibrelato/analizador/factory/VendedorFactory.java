@@ -2,6 +2,7 @@ package com.elibrelato.analizador.factory;
 
 import com.elibrelato.analizador.config.Config;
 import com.elibrelato.analizador.entity.Vendedor;
+import java.math.BigDecimal;
 
 /**
  *
@@ -30,7 +31,7 @@ public class VendedorFactory {
                             break;
                         case Config.VENDEDOR_STRING_SALARY:    
                             try {
-                                vendedor.setSalary(Double.parseDouble(value));
+                                vendedor.setSalary(new BigDecimal(value));
                             } catch (NumberFormatException ex) {
                                 System.out.println(ex.getMessage());
                             }

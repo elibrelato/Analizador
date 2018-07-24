@@ -7,6 +7,7 @@ package com.elibrelato.analizador.factory;
 
 import com.elibrelato.analizador.config.Config;
 import com.elibrelato.analizador.entity.Item;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
@@ -49,27 +50,25 @@ public class ItemsFactoryTest {
     @Test
     public void testGetItems() {
         String dados = "[1-34-10,2-33-1.50,3-40-0.10]";
-        ItemsFactory instance = new ItemsFactory();
-
         List<Item> expResult = getItems();
-        List<Item> result = instance.getItems(dados);
-        assertEquals(3, result.size());
-        for (int i1 = 0; i1 < result.size(); i1++) {
-            assertEquals(expResult.get(i1).getId(), result.get(i1).getId());
-            assertEquals(expResult.get(i1).getQuantity(), result.get(i1).getQuantity());
-            assertTrue(expResult.get(i1).getPrice() == result.get(i1).getPrice());
+        List<Item> items = new ItemsFactory().getItems(dados);
+        assertEquals(3, items.size());
+        for (int i1 = 0; i1 < items.size(); i1++) {
+            assertEquals(expResult.get(i1).getId(), items.get(i1).getId());
+            assertEquals(expResult.get(i1).getQuantity(), items.get(i1).getQuantity());
+            assertEquals(expResult.get(i1).getPrice(), items.get(i1).getPrice());
         }
     }
     
     private List<Item> getItems() {
         List<Item> items = new ArrayList<>();
-        items.add(getItem("1", 34, 10));
-        items.add(getItem("2", 33, 1.50d));
-        items.add(getItem("3", 40, 0.10d));
+        items.add(getItem("1", 34, new BigDecimal("10")));
+        items.add(getItem("2", 33, new BigDecimal("1.50")));
+        items.add(getItem("3", 40, new BigDecimal("0.10")));
         return items;
     }
     
-    private Item getItem(String id, int quantity, double value) {
+    private Item getItem(String id, int quantity, BigDecimal value) {
         Item item = new Item();
         item.setId(id);
         item.setQuantity(quantity);

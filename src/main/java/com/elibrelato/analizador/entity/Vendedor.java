@@ -1,5 +1,7 @@
 package com.elibrelato.analizador.entity;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author elibrelato@gmail.com
@@ -8,7 +10,7 @@ public class Vendedor implements Entity {
  
     private String name;
     private String cpf;
-    private double salary;
+    private BigDecimal salary;
 
     public String getName() {
         return name;
@@ -26,11 +28,11 @@ public class Vendedor implements Entity {
         this.cpf = cpf;
     }
 
-    public double getSalary() {
+    public BigDecimal getSalary() {
         return salary;
     }
     
-    public void setSalary(double salary) {
+    public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
 }

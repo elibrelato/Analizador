@@ -1,5 +1,7 @@
 package com.elibrelato.analizador.entity;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author elibrelato@gmail.com
@@ -8,7 +10,7 @@ public class Item {
 
     private String id;
     private int quantity;
-    private double price;
+    private BigDecimal price;
 
     public String getId() {
         return id;
@@ -26,11 +28,11 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 }

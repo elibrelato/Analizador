@@ -16,6 +16,7 @@ import com.elibrelato.analizador.entity.Item;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 
@@ -71,7 +72,7 @@ public class Relatorio extends DadosDoRelatorio {
     }
     
     protected boolean primeiro;
-    protected double maior, menor, valor, total;    
+    protected BigDecimal maior, menor, valor;    
     protected String resultado;
     
     // Metodos criados para buscar as informações que desejamos visualizar nos relatórios
@@ -103,12 +104,12 @@ public class Relatorio extends DadosDoRelatorio {
      * @return Uma String contendo o ID da venda mais cara.
      */
     protected String getIdDaVendaMaisCara(File file) {
-        maior = 0;
+        maior = new BigDecimal("0");
         resultado = "err";
         if (Dados.getVendas().containsKey(file)) {
             Dados.getVendas().get(file).forEach(venda -> {
                 valor = getValorTotalDaVenda(venda.getItems());
-                if (valor > maior) {
+                if (valor.compareTo(maior) > 0) {
                     maior = valor;
                     resultado = venda.getId();
                 }
@@ -126,10 +127,11 @@ public class Relatorio extends DadosDoRelatorio {
     protected String getPiorVendedor(File file) {
         primeiro = true;
         resultado = "err";
+        menor = new BigDecimal("0");
         if (Dados.getVendas().containsKey(file)) {
             Dados.getVendas().get(file).forEach(venda -> {
                 valor = getValorTotalDaVenda(venda.getItems());
-                if (primeiro == true || valor < menor) {
+                if (primeiro == true || valor.compareTo(menor) < 0) {
                     menor = valor;
                     resultado = venda.getVendedor();
                     primeiro = false;
@@ -139,9 +141,9 @@ public class Relatorio extends DadosDoRelatorio {
         return resultado;
     }
     
-    protected double getValorTotalDaVenda(List<Item> items) {
-        total = 0;
-        items.forEach(item -> total += item.getQuantity() * item.getPrice());
+    protected BigDecimal getValorTotalDaVenda(List<Item> items) {
+        BigDecimal total = new BigDecimal("0");
+        items.forEach(item -> total.add(item.getPrice().multiply(new BigDecimal(item.getQuantity()))));
         return total;
     }
     

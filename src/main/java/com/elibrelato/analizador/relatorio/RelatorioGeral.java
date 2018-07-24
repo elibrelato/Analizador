@@ -2,6 +2,7 @@ package com.elibrelato.analizador.relatorio;
 
 import com.elibrelato.analizador.dados.Dados;
 import java.io.File;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -104,12 +105,12 @@ public class RelatorioGeral extends Relatorio {
      * @return Um inteiro contendo o ID da melhor venda.
      */
     protected String getIdDaVendaMaisCara() {
-        maior = 0;
+        maior = new BigDecimal("0");
         resultado = "err";
         Dados.getVendas().forEach((file, vendas) -> {
             vendas.forEach(venda -> {
                 valor = getValorTotalDaVenda(venda.getItems());
-                if (valor > maior) {
+                if (valor.compareTo(maior) > 0) {
                     maior = valor;
                     resultado = venda.getId();
                 }
@@ -127,10 +128,11 @@ public class RelatorioGeral extends Relatorio {
     protected String getPiorVendedor() {
         primeiro = true;
         resultado = "err";
+        menor = new BigDecimal("0");
         Dados.getVendas().forEach((file, vendas) -> {
             vendas.forEach(venda -> {
                 valor = getValorTotalDaVenda(venda.getItems());
-                if (primeiro == true || valor < menor) {
+                if (primeiro == true || valor.compareTo(menor) < 0) {
                     menor = valor;
                     resultado = venda.getVendedor();
                     primeiro = false;

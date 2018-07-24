@@ -5,6 +5,7 @@ import com.elibrelato.analizador.dados.Dados;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import org.apache.commons.io.FileUtils;
@@ -52,10 +53,12 @@ public class ParserTest {
         File file2 = getTemporaryFile2();
         listaDeArquivos.add(file1);
         listaDeArquivos.add(file2);
-        Parser instance = new Parser();
-        Collection<File> result = instance.parse(listaDeArquivos);
+        Collection<File> result = new Parser().parse(listaDeArquivos);
         FileUtils.deleteQuietly(file1);
-        FileUtils.deleteQuietly(file2);        
+        FileUtils.deleteQuietly(file2);
+        assertEquals(2, result.size());
+        assertTrue(result.contains(file1));
+        assertTrue(result.contains(file2));
         asserts1(file1);
         asserts2(file2);
     }
@@ -66,8 +69,7 @@ public class ParserTest {
     @Test
     public void testParse_File() {
         File file = getTemporaryFile();
-        Parser instance = new Parser();
-        instance.parse(file);
+        new Parser().parse(file);
         FileUtils.deleteQuietly(file); 
         asserts1(file);       
     }
@@ -75,10 +77,10 @@ public class ParserTest {
     private void asserts1(File file) {
         assertEquals("Pedro", Dados.getVendedores().get(file).get(0).getName());
         assertEquals("1234567891234", Dados.getVendedores().get(file).get(0).getCpf());        
-        assertTrue(50000d == Dados.getVendedores().get(file).get(0).getSalary());
+        assertEquals(new BigDecimal("50000"), Dados.getVendedores().get(file).get(0).getSalary());
         assertEquals("Paulo", Dados.getVendedores().get(file).get(1).getName());
         assertEquals("3245678865434", Dados.getVendedores().get(file).get(1).getCpf()); 
-        assertTrue(40000.99d == Dados.getVendedores().get(file).get(1).getSalary());
+        assertEquals(new BigDecimal("40000.99"), Dados.getVendedores().get(file).get(1).getSalary());
         
         assertEquals("Jose da Silva", Dados.getClientes().get(file).get(0).getName());
         assertEquals("2345675434544345", Dados.getClientes().get(file).get(0).getCnpj());
@@ -98,7 +100,7 @@ public class ParserTest {
     private void asserts2(File file) {
         assertEquals("Maria de Oliveira", Dados.getVendedores().get(file).get(0).getName());
         assertEquals("9876543211234", Dados.getVendedores().get(file).get(0).getCpf());        
-        assertTrue(456.78d == Dados.getVendedores().get(file).get(0).getSalary());
+        assertEquals(new BigDecimal("456.78"), Dados.getVendedores().get(file).get(0).getSalary());
         
         assertEquals("Jose da Silva", Dados.getClientes().get(file).get(0).getName());
         assertEquals("2345675434544345", Dados.getClientes().get(file).get(0).getCnpj());

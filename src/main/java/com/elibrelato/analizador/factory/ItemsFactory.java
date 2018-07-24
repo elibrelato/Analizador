@@ -2,6 +2,7 @@ package com.elibrelato.analizador.factory;
 
 import com.elibrelato.analizador.config.Config;
 import com.elibrelato.analizador.entity.Item;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class ItemsFactory {
                                 break;
                             case Config.ITEM_STRING_ITEM_PRICE:
                                 try {
-                                    item.setPrice(Double.parseDouble(value));
+                                    item.setPrice(new BigDecimal(value));
                                 } catch (NumberFormatException e) {
                                     System.out.println(e.getMessage());
                                 }

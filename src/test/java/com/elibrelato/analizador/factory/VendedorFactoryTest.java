@@ -7,6 +7,7 @@ package com.elibrelato.analizador.factory;
 
 import com.elibrelato.analizador.config.Config;
 import com.elibrelato.analizador.entity.Vendedor;
+import java.math.BigDecimal;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -47,11 +48,9 @@ public class VendedorFactoryTest {
     @Test
     public void testGetVendedor() {
         String dados = "001ç3245678865434çPauloç40000.99";
-        double salary = 40000.99d;
-        VendedorFactory instance = new VendedorFactory();
-        Vendedor result = instance.getVendedor(dados);
-        assertEquals("Paulo", result.getName());
-        assertEquals("3245678865434", result.getCpf());
-        assertTrue(result.getSalary() == salary);
+        Vendedor vendedor = new VendedorFactory().getVendedor(dados);
+        assertEquals("Paulo", vendedor.getName());
+        assertEquals("3245678865434", vendedor.getCpf());
+        assertEquals(new BigDecimal("40000.99"), vendedor.getSalary());
     }  
 }

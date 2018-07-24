@@ -42,10 +42,9 @@ public class ClienteFactoryTest {
     @Test
     public void testGetCliente() {
         String dados = "002ç2345675434544345çJose da SilvaçRural";
-        ClienteFactory instance = new ClienteFactory();
-        Cliente result = instance.getCliente(dados);
-        assertEquals("Jose da Silva", result.getName());
-        assertEquals("2345675434544345", result.getCnpj());
-        assertEquals("Rural", result.getBusinessArea());
+        Cliente cliente = new ClienteFactory().getCliente(dados);
+        assertEquals("Jose da Silva", cliente.getName());
+        assertEquals("2345675434544345", cliente.getCnpj());
+        assertEquals("Rural", cliente.getBusinessArea());
     }  
 }
